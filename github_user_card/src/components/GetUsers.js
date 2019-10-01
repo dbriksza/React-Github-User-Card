@@ -4,20 +4,28 @@ import axios from "axios";
 
 class GetUser extends React.Component {
   state = {
-    user
+    user: {}
   };
   componentDidMount() {
-    axios.get("https://api.github.com/users/dbriksza").then(response => {
-      console.log(response);
-      this.state.user = response.data;
-    });
+    axios
+      .get("https://api.github.com/users/dbriksza")
+      .then(response => {
+        console.log(response);
+        this.setState({
+          user: response.data
+        });
+        {
+          console.log(this.state.user);
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
     return (
-      <div>
+      <>
         <UserCard data={this.state.user} />
-      </div>
+      </>
     );
   }
 }
