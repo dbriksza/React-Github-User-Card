@@ -4,8 +4,7 @@ import axios from "axios";
 
 class GetFollowers extends React.Component {
   state = {
-    follower: [],
-    followerdata: []
+    follower: []
   };
   componentDidMount() {
     axios
@@ -20,7 +19,13 @@ class GetFollowers extends React.Component {
   }
 
   render() {
-    return <></>;
+    return (
+      <>
+        {this.state.follower.map(follower => (
+          <UserCard data={follower} />
+        ))}
+      </>
+    );
   }
 }
 
